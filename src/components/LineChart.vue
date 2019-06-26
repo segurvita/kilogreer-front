@@ -55,5 +55,12 @@ export default {
   mounted() {
     this.renderChart(this.datacollection, this.options);
   },
+  created() {
+    this.$http
+      .get('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        console.log(response.data);
+      });
+  },
 };
 </script>
