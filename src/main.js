@@ -4,11 +4,13 @@ import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import axios from 'axios';
 import App from './App';
 import router from './router';
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
 
 /* eslint-disable no-new */
 new Vue({
@@ -17,3 +19,4 @@ new Vue({
   template: '<App/>',
   components: { App },
 });
+
