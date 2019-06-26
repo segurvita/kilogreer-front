@@ -1,21 +1,35 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <h1>{{ msg }}</h1>
-    </div>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">
+            <router-link to="/">Dashboard</router-link>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="container">
+      <h1>Weight</h1>
+      <line-chart></line-chart>
+    </section>
   </div>
 </template>
 
 <script>
+import LineChart from '@/components/LineChart';
+
 export default {
   name: 'Dashboard',
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    };
+  components: {
+    LineChart,
   },
 };
 </script>
 
 <style scoped>
+
+h1 {
+  margin-top: 20px;
+}
 </style>
