@@ -1,4 +1,4 @@
-# withings-weight-view
+# withings-weight-front
 
 > A Vue.js project
 

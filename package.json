@@ -1,7 +1,7 @@
 {
-  "name": "withings-weight-view",
+  "name": "withings-weight-front",
   "description": "A Vue.js project",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": "segur <segur.opus@gmail.com>",
   "browserslist": [
     "> 1%",
