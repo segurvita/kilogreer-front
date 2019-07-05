@@ -73,6 +73,7 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
+  "main": "build/build.js",
   "private": true,
   "scripts": {
     "build": "node build/build.js",
