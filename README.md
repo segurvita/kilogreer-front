@@ -4,6 +4,24 @@
 
 ## Build Setup
 
+Add `config/prod.env.js` like below.
+
+```javascript
+module.exports = {
+  NODE_ENV: '"production"',
+  VUE_APP_API_LOGIN: '"foo"'
+}
+```
+
+Add `config/dev.env.js` like below.
+
+```javascript
+module.exports = {
+  NODE_ENV: '"development"',
+  VUE_APP_API_LOGIN: '"foo"'
+}
+```
+
 ``` bash
 # install dependencies
 npm install
