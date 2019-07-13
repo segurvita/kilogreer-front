@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Dashboard from '@/components/Dashboard';
+import Auth from '@/auth';
 
 Vue.use(Router);
 
@@ -11,16 +12,16 @@ Vue.use(Router);
  * @param {*} next ナビゲーションの制御
  */
 const requireAuth = (to, from, next) => {
-  // クエリcodeの有無
-  if (to.query.code) {
+  // 認証済みかどうか
+  Auth.isAuthenticated(to.query.code).then(() => {
     // 次のナビゲーションへ遷移
     next();
-  } else {
+  }).catch(() => {
     // 別のナビゲーションへ遷移
     next({
       path: '/login',
     });
-  }
+  });
 };
 
 /**
