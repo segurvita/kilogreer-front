@@ -43,7 +43,7 @@ export default new Router({
       path: '/login',
       beforeEnter(to, from, next) {
         // ログインページへ遷移
-        window.location = process.env.VUE_APP_API_LOGIN;
+        window.location = `${process.env.VUE_APP_API_HOST}/code`;
         next();
       },
     },
