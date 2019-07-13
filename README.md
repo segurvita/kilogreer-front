@@ -9,7 +9,7 @@ Add `config/prod.env.js` like below.
 ```javascript
 module.exports = {
   NODE_ENV: '"production"',
-  VUE_APP_API_LOGIN: '"foo"'
+  VUE_APP_API_HOST: '"foo"'
 }
 ```
 
@@ -18,7 +18,7 @@ Add `config/dev.env.js` like below.
 ```javascript
 module.exports = {
   NODE_ENV: '"development"',
-  VUE_APP_API_LOGIN: '"foo"'
+  VUE_APP_API_HOST: '"foo"'
 }
 ```
 
