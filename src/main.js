@@ -29,6 +29,12 @@ http.interceptors.request.use((request) => {
 // axios設定
 Vue.prototype.$http = http;
 
+// Debug用にダミーアクセストークンを設定
+const dummyAccessToken = process.env.VUE_APP_DUMMY_ACCESS_TOKEN;
+if (dummyAccessToken) {
+  sessionStorage.setItem('access_token', dummyAccessToken);
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
