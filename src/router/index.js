@@ -32,10 +32,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: 'home',
-    },
-    {
-      path: '/home',
       name: 'Dashboard',
       component: Dashboard,
       beforeEnter: requireAuth,
