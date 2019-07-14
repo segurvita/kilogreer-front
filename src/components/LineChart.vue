@@ -57,7 +57,7 @@ export default {
   },
   created() {
     this.$http
-      .get('https://jsonplaceholder.typicode.com/users')
+      .get('/weight')
       .then((response) => {
         console.log(response.data);
       });

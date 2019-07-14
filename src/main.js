@@ -10,7 +10,24 @@ import router from './router';
 
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
-Vue.prototype.$http = axios;
+
+// バックエンドURL設定
+const http = axios.create({
+  baseURL: process.env.VUE_APP_API_HOST,
+});
+
+// axios共通処理設定
+http.interceptors.request.use((request) => {
+  // アクセストークン設定
+  const accessToken = sessionStorage.getItem('access_token');
+  if (accessToken) {
+    request.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return request;
+}, error => Promise.reject(error));
+
+// axios設定
+Vue.prototype.$http = http;
 
 /* eslint-disable no-new */
 new Vue({

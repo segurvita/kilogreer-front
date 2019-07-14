@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 /**
  * 認証済みか確認
