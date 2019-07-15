@@ -4,16 +4,21 @@ export default {
   namespaced: true,
   state: {
     list: [],
+    dailyList: [],
     loading: false,
     refreshList: true, // 初期化
   },
   getters: {
     list: state => state.list,
+    dailyList: state => state.dailyList,
     loading: state => state.loading,
   },
   mutations: {
     list(state, payload) {
       state.list = payload;
+    },
+    dailyList(state, payload) {
+      state.dailyList = payload;
     },
     loading(state, payload) {
       state.loading = payload;
@@ -38,7 +43,8 @@ export default {
         // 要素を算出
         .map((item) => {
           // 日時
-          const createdDate = dayjs(item.created * 1000).format('YYYY/MM/DD HH:mm:ss');
+          const createdDate = dayjs(item.created * 1000).format('YYYY/MM/DD');
+          const createdTime = dayjs(item.created * 1000).format('YYYY/MM/DD HH:mm:ss');
 
           // 体重
           const weightUnit = 10 ** item.measures[0].unit;
@@ -46,6 +52,7 @@ export default {
 
           return {
             createdDate,
+            createdTime,
             weightValue,
           };
         })
@@ -53,6 +60,25 @@ export default {
         .reverse();
 
       commit('list', list);
+
+      // 日付単位
+      const dailyList = [list[0]];
+      list.reduce((prev, current) => {
+        if (prev.createdDate === current.createdDate) {
+          dailyList[dailyList.length - 1].weightValue = Math.min(
+            prev.weightValue,
+            current.weightValue,
+          );
+        } else {
+          dailyList.push({
+            createdDate: current.createdDate,
+            weightValue: current.weightValue,
+          });
+        }
+        return current;
+      });
+
+      commit('dailyList', dailyList);
 
       // 更新完了
       commit('refreshList', false);
