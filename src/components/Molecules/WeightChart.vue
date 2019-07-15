@@ -1,12 +1,16 @@
+<template>
+  <line-chart :chart-data="datacollection" :options="options"></line-chart>
+</template>
+
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { Line, mixins } from 'vue-chartjs';
-
-const { reactiveProp } = mixins;
+import LineChart from '@/components/Atoms/LineChart';
 
 export default {
-  extends: Line,
-  mixins: [reactiveProp],
+  name: 'WeightChart',
+  components: {
+    LineChart,
+  },
   computed: {
     ...mapGetters('weights', ['list', 'loading']),
     times() {
@@ -15,7 +19,7 @@ export default {
     weights() {
       return this.list.map(item => item.value);
     },
-    chartData() {
+    datacollection() {
       return {
         labels: this.times,
         datasets: [
@@ -60,14 +64,8 @@ export default {
       },
     };
   },
-  mounted() {
-    this.renderChart(this.chartData, this.options);
-  },
   created() {
     this.getList();
-
-    // this.times = ['2015', '2016', '2017', '2018'];
-    // this.weights = [60, 55, 65, 55];
   },
   methods: {
     ...mapActions('weights', ['getList']),
