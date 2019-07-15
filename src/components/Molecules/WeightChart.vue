@@ -14,10 +14,10 @@ export default {
   computed: {
     ...mapGetters('weights', ['list', 'loading']),
     times() {
-      return this.list.map(item => item.date);
+      return this.list.map(item => item.createdDate);
     },
     weights() {
-      return this.list.map(item => item.value);
+      return this.list.map(item => item.weightValue);
     },
     datacollection() {
       return {
