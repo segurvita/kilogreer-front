@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 // バックエンドURL設定
 const http = axios.create({
@@ -51,12 +52,14 @@ export default {
       commit('loading', false);
 
       // 取得データを加工して格納
-      const list = res.data.body.measuregrps.map(item => ({
-        created: item.created,
-        date: item.date,
-        grpid: item.grpid,
-        value: item.measures[0].value,
-      }));
+      const list = res.data.body.measuregrps.map((item) => {
+        // 日時
+        const createdDate = dayjs(item.created * 1000).format('YYYY/MM/DD HH:mm:ss');
+
+        return {
+          createdDate,
+        };
+      });
 
       commit('list', list);
 
