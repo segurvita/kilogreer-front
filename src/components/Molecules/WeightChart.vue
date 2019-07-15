@@ -12,12 +12,12 @@ export default {
     LineChart,
   },
   computed: {
-    ...mapGetters('weights', ['list', 'loading']),
+    ...mapGetters('weights', ['dailyList', 'loading']),
     times() {
-      return this.list.map(item => item.createdDate);
+      return this.dailyList.map(item => item.createdDate);
     },
     weights() {
-      return this.list.map(item => item.weightValue);
+      return this.dailyList.map(item => item.weightValue);
     },
     datacollection() {
       return {
@@ -41,7 +41,7 @@ export default {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
+                beginAtZero: false,
               },
               gridLines: {
                 display: true,
