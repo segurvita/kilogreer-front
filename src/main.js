@@ -30,6 +30,19 @@ window.axios.interceptors.request.use(
   error => Promise.reject(error),
 );
 
+// axios共通応答設定
+window.axios.interceptors.response.use(
+  response => response,
+  (error) => {
+    // 認証エラー
+    if (error.response.status === 401) {
+      // ログアウト
+      router.replace('/logout');
+    }
+    return Promise.reject(error);
+  },
+);
+
 // axios設定
 Vue.prototype.$http = window.axios;
 
