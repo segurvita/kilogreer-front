@@ -1,9 +1,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { Line } from 'vue-chartjs';
+import { Line, mixins } from 'vue-chartjs';
+
+const { reactiveProp } = mixins;
 
 export default {
   extends: Line,
+  mixins: [reactiveProp],
   computed: {
     ...mapGetters('weights', ['list', 'loading']),
     times() {
@@ -12,7 +15,7 @@ export default {
     weights() {
       return this.list.map(item => item.value);
     },
-    datacollection() {
+    chartData() {
       return {
         labels: this.times,
         datasets: [
@@ -58,7 +61,7 @@ export default {
     };
   },
   mounted() {
-    this.renderChart(this.datacollection, this.options);
+    this.renderChart(this.chartData, this.options);
   },
   created() {
     this.getList();
