@@ -1,22 +1,34 @@
+<template>
+  <line-chart :chart-data="datacollection" :options="options"></line-chart>
+</template>
+
 <script>
-import { Line } from 'vue-chartjs';
+import { mapGetters, mapActions } from 'vuex';
+import LineChart from '@/components/Atoms/LineChart';
 
 export default {
-  extends: Line,
+  name: 'WeightChart',
+  components: {
+    LineChart,
+  },
   computed: {
-    datacollection: () => {
-      const labels = ['2015', '2016', '2017', '2018'];
-      const data = [60, 55, 65, 55];
-
+    ...mapGetters('weights', ['list', 'loading']),
+    times() {
+      return this.list.map(item => item.date);
+    },
+    weights() {
+      return this.list.map(item => item.value);
+    },
+    datacollection() {
       return {
-        labels,
+        labels: this.times,
         datasets: [
           {
             label: 'Weight',
             pointBackgroundColor: 'white',
             borderWidth: 1,
             pointBorderColor: '#249EBF',
-            data,
+            data: this.weights,
           },
         ],
       };
@@ -52,15 +64,11 @@ export default {
       },
     };
   },
-  mounted() {
-    this.renderChart(this.datacollection, this.options);
-  },
   created() {
-    this.$http
-      .get('/weight')
-      .then((response) => {
-        console.log(response.data);
-      });
+    this.getList();
+  },
+  methods: {
+    ...mapActions('weights', ['getList']),
   },
 };
 </script>

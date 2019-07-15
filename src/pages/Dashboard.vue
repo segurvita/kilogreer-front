@@ -11,24 +11,23 @@
     </nav>
     <section class="container">
       <h1>Weight</h1>
-      <line-chart></line-chart>
+      <weight-chart></weight-chart>
     </section>
   </div>
 </template>
 
 <script>
-import LineChart from '@/components/LineChart';
+import WeightChart from '@/components/Molecules/WeightChart';
 
 export default {
   name: 'Dashboard',
   components: {
-    LineChart,
+    WeightChart,
   },
 };
 </script>
 
 <style scoped>
-
 h1 {
   margin-top: 20px;
 }
