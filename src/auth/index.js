@@ -36,4 +36,11 @@ const isAuthenticated = (code = null) =>
       .catch(err => reject(err));
   });
 
-export default { isAuthenticated };
+/**
+ * ログアウト処理
+ */
+const logout = () => {
+  sessionStorage.removeItem('access_token');
+};
+
+export default { isAuthenticated, logout };
