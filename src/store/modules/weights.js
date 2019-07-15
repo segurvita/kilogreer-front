@@ -56,8 +56,13 @@ export default {
         // 日時
         const createdDate = dayjs(item.created * 1000).format('YYYY/MM/DD HH:mm:ss');
 
+        // 体重
+        const weightUnit = 10 ** item.measures[0].unit;
+        const weightValue = item.measures[0].value * weightUnit;
+
         return {
           createdDate,
+          weightValue,
         };
       });
 
