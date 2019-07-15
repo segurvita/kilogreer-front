@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Dashboard from '@/components/Dashboard';
+import Dashboard from '@/pages/Dashboard';
 import Auth from '@/auth';
 
 Vue.use(Router);
@@ -13,15 +13,17 @@ Vue.use(Router);
  */
 const requireAuth = (to, from, next) => {
   // 認証済みかどうか
-  Auth.isAuthenticated(to.query.code).then(() => {
-    // 次のナビゲーションへ遷移
-    next();
-  }).catch(() => {
-    // 別のナビゲーションへ遷移
-    next({
-      path: '/login',
+  Auth.isAuthenticated(to.query.code)
+    .then(() => {
+      // 次のナビゲーションへ遷移
+      next();
+    })
+    .catch(() => {
+      // 別のナビゲーションへ遷移
+      next({
+        path: '/login',
+      });
     });
-  });
 };
 
 /**
