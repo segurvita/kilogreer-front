@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 /**
  * 認証済みか確認
  * @param {*} code 認証コード（null可）
@@ -19,8 +17,8 @@ const isAuthenticated = (code = null) =>
     }
 
     // アクセストークンを取得
-    return axios
-      .get(`${process.env.VUE_APP_API_HOST}/token?code=${code}`)
+    return window.axios
+      .get('/token', { params: { code } })
       .then((response) => {
         if (response.data.access_token) {
           sessionStorage.setItem('access_token', response.data.access_token);
