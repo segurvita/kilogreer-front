@@ -1,22 +1,4 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
-
-// バックエンドURL設定
-const http = axios.create({
-  baseURL: process.env.VUE_APP_API_HOST,
-});
-// axios共通処理設定
-http.interceptors.request.use(
-  (request) => {
-    // アクセストークン設定
-    const accessToken = sessionStorage.getItem('access_token');
-    if (accessToken) {
-      request.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return request;
-  },
-  error => Promise.reject(error),
-);
 
 export default {
   namespaced: true,
@@ -48,7 +30,7 @@ export default {
       }
 
       commit('loading', true);
-      const res = await http.get('/weight');
+      const res = await window.axios.get('/weight');
       commit('loading', false);
 
       // 取得データを加工して格納
