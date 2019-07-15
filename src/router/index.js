@@ -27,6 +27,17 @@ const requireAuth = (to, from, next) => {
 };
 
 /**
+ * 認証済みか検査するナビゲーションガード
+ * @param {*} to 次にナビゲーションされるルート
+ * @param {*} from ナビゲーションされる前のルート
+ * @param {*} next ナビゲーションの制御
+ */
+const logout = (to, from, next) => {
+  Auth.logout();
+  next('/login');
+};
+
+/**
  * ルーティング
  */
 export default new Router({
@@ -45,6 +56,10 @@ export default new Router({
         window.location = `${process.env.VUE_APP_API_HOST}/code`;
         next();
       },
+    },
+    {
+      path: '/logout',
+      beforeEnter: logout,
     },
   ],
 });
