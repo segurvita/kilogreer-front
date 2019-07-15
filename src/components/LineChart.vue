@@ -4,19 +4,16 @@ import { Line } from 'vue-chartjs';
 export default {
   extends: Line,
   computed: {
-    datacollection: () => {
-      const labels = ['2015', '2016', '2017', '2018'];
-      const data = [60, 55, 65, 55];
-
+    datacollection() {
       return {
-        labels,
+        labels: this.times,
         datasets: [
           {
             label: 'Weight',
             pointBackgroundColor: 'white',
             borderWidth: 1,
             pointBorderColor: '#249EBF',
-            data,
+            data: this.weights,
           },
         ],
       };
@@ -24,6 +21,8 @@ export default {
   },
   data() {
     return {
+      times: [],
+      weights: [],
       options: {
         scales: {
           yAxes: [
@@ -56,11 +55,12 @@ export default {
     this.renderChart(this.datacollection, this.options);
   },
   created() {
-    this.$http
-      .get('/weight')
-      .then((response) => {
-        console.log(response.data);
-      });
+    this.$http.get('/weight').then((response) => {
+      console.log(response.data);
+    });
+
+    this.times = ['2015', '2016', '2017', '2018'];
+    this.weights = [60, 55, 65, 55];
   },
 };
 </script>
