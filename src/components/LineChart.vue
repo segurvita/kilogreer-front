@@ -1,9 +1,17 @@
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import { Line } from 'vue-chartjs';
 
 export default {
   extends: Line,
   computed: {
+    ...mapGetters('weights', ['list', 'loading']),
+    times() {
+      return this.list.map(item => item.date);
+    },
+    weights() {
+      return this.list.map(item => item.value);
+    },
     datacollection() {
       return {
         labels: this.times,
@@ -21,8 +29,6 @@ export default {
   },
   data() {
     return {
-      times: [],
-      weights: [],
       options: {
         scales: {
           yAxes: [
@@ -55,12 +61,13 @@ export default {
     this.renderChart(this.datacollection, this.options);
   },
   created() {
-    this.$http.get('/weight').then((response) => {
-      console.log(response.data);
-    });
+    this.getList();
 
-    this.times = ['2015', '2016', '2017', '2018'];
-    this.weights = [60, 55, 65, 55];
+    // this.times = ['2015', '2016', '2017', '2018'];
+    // this.weights = [60, 55, 65, 55];
+  },
+  methods: {
+    ...mapActions('weights', ['getList']),
   },
 };
 </script>
