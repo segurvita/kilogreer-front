@@ -11,8 +11,11 @@
 
 <script>
 import dayjs from 'dayjs';
+import 'dayjs/locale/ja';
 import { mapGetters, mapActions } from 'vuex';
 import LineChart from '@/components/Atoms/LineChart';
+
+dayjs.locale('ja');
 
 export default {
   name: 'WeightChart',
@@ -23,7 +26,7 @@ export default {
     ...mapGetters('weights', ['dailyList', 'loading']),
     times() {
       return this.dailyList.map(item =>
-        dayjs(item.createdDate).format('M/D'));
+        dayjs(item.createdDate).format('M/D ddd'));
     },
     weights() {
       return this.dailyList.map(item =>
