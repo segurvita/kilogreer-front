@@ -24,7 +24,8 @@ export default {
       return this.dailyList.map(item => item.createdDate);
     },
     weights() {
-      return this.dailyList.map(item => item.weightValue);
+      return this.dailyList.map(item =>
+        Math.round(item.weightValue * 100) / 100);
     },
     datacollection() {
       return {
