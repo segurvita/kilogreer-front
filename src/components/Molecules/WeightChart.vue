@@ -26,7 +26,8 @@ export default {
     ...mapGetters('weights', ['dailyList', 'loading']),
     times() {
       return this.dailyList.map(item =>
-        dayjs(item.createdDate).format('M/D ddd'));
+        dayjs(item.createdDate).format('M/D ddd')
+          .split(' '));
     },
     weights() {
       return this.dailyList.map(item =>
