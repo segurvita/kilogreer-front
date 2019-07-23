@@ -15,10 +15,9 @@
         </div>
       </div>
     </nav>
-    <section class="container">
+    <section class="container-fluid">
       <h1>Weight</h1>
       <weight-chart></weight-chart>
-
     </section>
   </div>
 </template>
