@@ -1,5 +1,12 @@
 <template>
-  <line-chart :chart-data="datacollection" :options="options"></line-chart>
+  <div class="weightChart">
+    <line-chart
+      :chart-data="datacollection"
+      :options="options"
+      style="float: left"
+      class="lineChart"
+    ></line-chart>
+  </div>
 </template>
 
 <script>
@@ -72,3 +79,15 @@ export default {
   },
 };
 </script>
+
+<style lang="css" scoped>
+.weightChart {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.lineChart {
+  margin-top: 20px;
+  width: 2000px;
+}
+</style>
