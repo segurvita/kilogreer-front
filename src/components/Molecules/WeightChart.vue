@@ -59,7 +59,8 @@ export default {
           xAxes: [
             {
               gridLines: {
-                display: false,
+                display: true,
+                borderDash: [4, 4],
               },
             },
           ],
