@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import axios from 'axios';
 import App from './App';
+import Auth from './auth';
 import router from './router';
 import store from './store';
 
@@ -36,8 +37,16 @@ window.axios.interceptors.response.use(
   (error) => {
     // 認証エラー
     if (error.response.status === 401) {
-      // ログアウト
-      router.replace('/logout');
+      // 再認証
+      Auth.refreshAccessToken()
+        .then(() =>
+          // 再リクエスト
+          window.axios.request(error.config),
+        )
+        .catch(() => {
+          // ログアウト
+          router.replace('/logout');
+        });
     }
     return Promise.reject(error);
   },
@@ -50,6 +59,12 @@ Vue.prototype.$http = window.axios;
 const dummyAccessToken = process.env.VUE_APP_DUMMY_ACCESS_TOKEN;
 if (dummyAccessToken) {
   sessionStorage.setItem('access_token', dummyAccessToken);
+}
+
+// Debug用にダミーリフレッシュトークンを設定
+const dummyRefreshToken = process.env.VUE_APP_DUMMY_REFRESH_TOKEN;
+if (dummyRefreshToken) {
+  localStorage.setItem('refresh_token', dummyRefreshToken);
 }
 
 /* eslint-disable no-new */
