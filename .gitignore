@@ -19,3 +19,6 @@ selenium-debug.log
 
 # Vue CLI
 config/*.env.js
+
+# Firebase
+.firebaserc
