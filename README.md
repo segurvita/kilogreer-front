@@ -1,4 +1,4 @@
-# withings-weight-front
+# kilogreer-front
 
 > A Vue.js project
 
