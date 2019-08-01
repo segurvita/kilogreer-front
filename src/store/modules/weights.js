@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import moment from 'moment-timezone';
 
 export default {
   namespaced: true,
@@ -43,8 +43,12 @@ export default {
         // 要素を算出
         .map((item) => {
           // 日時
-          const createdDate = dayjs(item.created * 1000).format('YYYY/MM/DD');
-          const createdTime = dayjs(item.created * 1000).format('YYYY/MM/DD HH:mm:ss');
+          const createdDate = moment(item.created * 1000)
+            .tz(res.data.body.timezone)
+            .format('YYYY/MM/DD');
+          const createdTime = moment(item.created * 1000)
+            .tz(res.data.body.timezone)
+            .format('YYYY/MM/DD HH:mm:ss');
 
           // 体重
           const weightUnit = 10 ** item.measures[0].unit;
