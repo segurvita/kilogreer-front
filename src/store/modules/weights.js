@@ -65,15 +65,31 @@ export default {
 
       commit('list', list);
 
-      // 日付単位
-      const dailyList = [list[0]];
+      // 日付単位のリストを作成開始
+      const dailyList = [list[0]]; // 初期値は先頭値
       list.reduce((prev, current) => {
         if (prev.createdDate === current.createdDate) {
+          // 前の測定と日付が同じなら、最小値を更新
           dailyList[dailyList.length - 1].weightValue = Math.min(
             prev.weightValue,
             current.weightValue,
           );
         } else {
+          // 前の測定との差を計算
+          const prevDate = moment(prev.createdDate);
+          const currentDate = moment(current.createdDate);
+          const diffDay = currentDate.diff(prevDate, 'days');
+
+          // 測定値がない日付のデータを追加
+          for (let i = 0; i < diffDay - 1; i += 1) {
+            const iteDate = prevDate.add(1, 'd').format('YYYY/MM/DD');
+            dailyList.push({
+              createdDate: iteDate,
+              weightValue: current.weightValue,
+            });
+          }
+
+          // dailyListに追加
           dailyList.push({
             createdDate: current.createdDate,
             weightValue: current.weightValue,
