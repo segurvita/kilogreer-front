@@ -96,6 +96,6 @@ export default {
 
 .lineChart {
   margin-top: 20px;
-  width: 2000px;
+  width: 900px;
 }
 </style>
