@@ -82,7 +82,7 @@ export default {
         if (prev.createdDate === current.createdDate) {
           // 前の測定と日付が同じなら、最小値を更新
           dailyList[dailyList.length - 1].weightValue = Math.min(
-            prev.weightValue,
+            dailyList[dailyList.length - 1].weightValue,
             current.weightValue,
           );
         } else {
