@@ -54,6 +54,7 @@ export default {
         scales: {
           yAxes: [
             {
+              position: 'right',
               ticks: {
                 beginAtZero: false,
               },
