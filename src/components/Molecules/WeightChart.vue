@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapGetters('weights', ['dailyList', 'loading']),
     dailyListVue() {
-      return this.dailyList.slice(-365);
+      return this.dailyList.slice(-365 * 0.5);
     },
     weights() {
       return this.dailyListVue.map(item => ({
@@ -51,7 +51,7 @@ export default {
           && this.dailyListVue.slice(-1)[0].createdDate) {
           const firstMoment = this.dailyListVue[0].createdMoment;
           const lastMoment = this.dailyListVue.slice(-1)[0].createdMoment;
-          const width = lastMoment.diff(firstMoment, 'days', true) * 20;
+          const width = lastMoment.diff(firstMoment, 'days', true) * 40;
           return width;
         }
       }
@@ -96,9 +96,11 @@ export default {
             {
               type: 'time',
               time: {
+                unit: 'day',
                 displayFormats: {
-                  quarter: 'YYYY/MM/DD',
+                  day: 'MM/DD',
                 },
+                stepSize: 1,
               },
               gridLines: {
                 display: true,
@@ -133,9 +135,6 @@ export default {
 }
 
 .lineChart {
-  /* デフォルトの値を宣言*/
-  --width: 900px;
-
   float: left;
   margin-top: 20px;
   width: var(--width);
