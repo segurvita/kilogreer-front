@@ -23,18 +23,14 @@ export default {
   },
   computed: {
     ...mapGetters('weights', ['dailyList', 'loading']),
-    times() {
-      return this.dailyList.map(item =>
-        dayjs(item.createdDate).format('M/D ddd')
-          .split(' '));
-    },
     weights() {
-      return this.dailyList.map(item =>
-        Math.round(item.weightValue * 100) / 100);
+      return this.dailyList.map(item => ({
+        x: moment(item.createdDate),
+        y: Math.round(item.weightValue * 100) / 100,
+      }));
     },
     datacollection() {
       return {
-        labels: this.times,
         datasets: [
           {
             label: 'Weight',
@@ -64,6 +60,12 @@ export default {
           ],
           xAxes: [
             {
+              type: 'time',
+              time: {
+                displayFormats: {
+                  quarter: 'YYYY/MM/DD',
+                },
+              },
               gridLines: {
                 display: true,
                 borderDash: [4, 4],
