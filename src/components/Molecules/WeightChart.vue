@@ -23,9 +23,12 @@ export default {
   },
   computed: {
     ...mapGetters('weights', ['dailyList', 'loading']),
+    dailyListVue() {
+      return this.dailyList.slice(-365);
+    },
     weights() {
-      return this.dailyList.map(item => ({
-        x: item.createdMoment,
+      return this.dailyListVue.map(item => ({
+        x: moment(item.createdDate),
         y: Math.round(item.weightValue * 100) / 100,
       }));
     },
@@ -43,15 +46,16 @@ export default {
       };
     },
     width() {
-      if (this.dailyList && this.dailyList.length > 0) {
-        if (this.dailyList[0].createdDate && this.dailyList.slice(-1)[0].createdDate) {
-          const firstMoment = this.dailyList[0].createdMoment;
-          const lastMoment = this.dailyList.slice(-1)[0].createdMoment;
-          const days = lastMoment.diff(firstMoment, 'hours', true);
-          return days;
+      if (this.dailyListVue && this.dailyListVue.length > 0) {
+        if (this.dailyListVue[0].createdDate
+          && this.dailyListVue.slice(-1)[0].createdDate) {
+          const firstMoment = this.dailyListVue[0].createdMoment;
+          const lastMoment = this.dailyListVue.slice(-1)[0].createdMoment;
+          const width = lastMoment.diff(firstMoment, 'days', true) * 20;
+          return width;
         }
       }
-      return 10000;
+      return 900;
     },
     styles() {
       return {
