@@ -96,9 +96,11 @@ export default {
             {
               type: 'time',
               time: {
+                unit: 'day',
                 displayFormats: {
-                  quarter: 'YYYY/MM/DD',
+                  day: 'MM/DD',
                 },
+                stepSize: 1,
               },
               gridLines: {
                 display: true,
