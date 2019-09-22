@@ -96,8 +96,11 @@ export default {
 }
 
 .lineChart {
+  /* デフォルトの値を宣言*/
+  --width: 900px;
+
   float: left;
   margin-top: 20px;
-  width: 900px;
+  width: var(--width);
 }
 </style>
