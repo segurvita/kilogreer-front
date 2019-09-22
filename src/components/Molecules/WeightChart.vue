@@ -57,9 +57,22 @@ export default {
       }
       return 900;
     },
+    height() {
+      if (this.dailyListVue && this.dailyListVue.length > 0) {
+        if (this.dailyListVue[0].weightValue
+          && this.dailyListVue.slice(-1)[0].weightValue) {
+          const firstMoment = this.dailyListVue[0].weightValue;
+          const lastMoment = this.dailyListVue.slice(-1)[0].weightValue;
+          const height = Math.abs(firstMoment - lastMoment) * 200;
+          return height;
+        }
+      }
+      return 2000;
+    },
     styles() {
       return {
         '--width': `${this.width}px`,
+        '--height': `${this.height}px`,
       };
     },
   },
