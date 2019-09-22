@@ -85,6 +85,7 @@ export default {
               position: 'right',
               ticks: {
                 beginAtZero: false,
+                stepSize: 0.2,
               },
               gridLines: {
                 display: true,
