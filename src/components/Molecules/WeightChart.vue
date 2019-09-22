@@ -42,9 +42,20 @@ export default {
         ],
       };
     },
+    width() {
+      if (this.dailyList && this.dailyList.length > 0) {
+        if (this.dailyList[0].createdDate && this.dailyList.slice(-1)[0].createdDate) {
+          const firstMoment = this.dailyList[0].createdMoment;
+          const lastMoment = this.dailyList.slice(-1)[0].createdMoment;
+          const days = lastMoment.diff(firstMoment, 'hours', true);
+          return days;
+        }
+      }
+      return 10000;
+    },
     styles() {
       return {
-        '--width': '10000px',
+        '--width': `${this.width}px`,
       };
     },
   },
