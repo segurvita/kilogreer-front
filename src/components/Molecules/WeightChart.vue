@@ -124,6 +124,18 @@ export default {
   methods: {
     ...mapActions('weights', ['getList']),
   },
+  watch: {
+    width() {
+      this.$nextTick(() => {
+        this.$el.scrollLeft = this.width;
+      });
+    },
+    height() {
+      this.$nextTick(() => {
+        this.$el.scrollTop = this.height;
+      });
+    },
+  },
 };
 </script>
 
