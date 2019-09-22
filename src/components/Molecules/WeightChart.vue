@@ -10,12 +10,11 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
-import 'dayjs/locale/ja';
+import moment from 'moment-timezone';
 import { mapGetters, mapActions } from 'vuex';
 import LineChart from '@/components/Atoms/LineChart';
 
-dayjs.locale('ja');
+moment.locale('ja');
 
 export default {
   name: 'WeightChart',
