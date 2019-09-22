@@ -3,7 +3,6 @@
     <line-chart
       :chart-data="datacollection"
       :options="options"
-      style="float: left"
       class="lineChart"
     ></line-chart>
   </div>
@@ -97,6 +96,7 @@ export default {
 }
 
 .lineChart {
+  float: left;
   margin-top: 20px;
   width: 900px;
 }
