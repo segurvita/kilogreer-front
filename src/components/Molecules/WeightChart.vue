@@ -86,7 +86,7 @@ export default {
               position: 'right',
               ticks: {
                 beginAtZero: false,
-                stepSize: 0.2,
+                stepSize: 0.5,
               },
               gridLines: {
                 display: true,
@@ -99,7 +99,7 @@ export default {
               time: {
                 unit: 'day',
                 displayFormats: {
-                  day: 'MM/DD',
+                  day: 'M/D',
                 },
                 stepSize: 1,
               },
