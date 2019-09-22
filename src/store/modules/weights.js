@@ -43,11 +43,11 @@ export default {
         // 要素を算出
         .map((item) => {
           // 日時
-          const createdDate = moment(item.created * 1000)
-            .tz(res.data.body.timezone)
+          const createdMoment = moment(item.created * 1000)
+            .tz(res.data.body.timezone);
+          const createdDate = createdMoment
             .format('YYYY/MM/DD');
-          const createdTime = moment(item.created * 1000)
-            .tz(res.data.body.timezone)
+          const createdTime = createdMoment
             .format('YYYY/MM/DD HH:mm:ss');
 
           // 体重
@@ -55,6 +55,7 @@ export default {
           const weightValue = item.measures[0].value * weightUnit;
 
           return {
+            createdMoment,
             createdDate,
             createdTime,
             weightValue,
@@ -77,6 +78,7 @@ export default {
         } else {
           // dailyListに追加
           dailyList.push({
+            createdMoment: current.createdMoment,
             createdDate: current.createdDate,
             weightValue: current.weightValue,
           });

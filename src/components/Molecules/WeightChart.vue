@@ -3,7 +3,7 @@
     <line-chart
       :chart-data="datacollection"
       :options="options"
-      style="float: left"
+      :style="styles"
       class="lineChart"
     ></line-chart>
   </div>
@@ -23,8 +23,11 @@ export default {
   },
   computed: {
     ...mapGetters('weights', ['dailyList', 'loading']),
+    dailyListVue() {
+      return this.dailyList.slice(-365);
+    },
     weights() {
-      return this.dailyList.map(item => ({
+      return this.dailyListVue.map(item => ({
         x: moment(item.createdDate),
         y: Math.round(item.weightValue * 100) / 100,
       }));
@@ -40,6 +43,23 @@ export default {
             data: this.weights,
           },
         ],
+      };
+    },
+    width() {
+      if (this.dailyListVue && this.dailyListVue.length > 0) {
+        if (this.dailyListVue[0].createdDate
+          && this.dailyListVue.slice(-1)[0].createdDate) {
+          const firstMoment = this.dailyListVue[0].createdMoment;
+          const lastMoment = this.dailyListVue.slice(-1)[0].createdMoment;
+          const width = lastMoment.diff(firstMoment, 'days', true) * 20;
+          return width;
+        }
+      }
+      return 900;
+    },
+    styles() {
+      return {
+        '--width': `${this.width}px`,
       };
     },
   },
@@ -97,7 +117,11 @@ export default {
 }
 
 .lineChart {
+  /* デフォルトの値を宣言*/
+  --width: 900px;
+
+  float: left;
   margin-top: 20px;
-  width: 900px;
+  width: var(--width);
 }
 </style>
