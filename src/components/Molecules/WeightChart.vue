@@ -3,6 +3,7 @@
     <line-chart
       :chart-data="datacollection"
       :options="options"
+      :style="styles"
       class="lineChart"
     ></line-chart>
   </div>
@@ -39,6 +40,11 @@ export default {
             data: this.weights,
           },
         ],
+      };
+    },
+    styles() {
+      return {
+        '--width': '10000px',
       };
     },
   },
