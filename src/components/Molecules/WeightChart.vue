@@ -129,8 +129,8 @@ export default {
 
 <style lang="css" scoped>
 .weightChart {
-  width: 100%;
-  height: 100%;
+  width: 95vw;
+  height: 80vh;
   overflow-x: scroll;
   overflow-y: scroll;
 }
