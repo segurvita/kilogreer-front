@@ -71,8 +71,9 @@ export default {
     },
     styles() {
       return {
-        '--width': `${this.width}px`,
-        '--height': `${this.height}px`,
+        width: `${this.width}px`,
+        height: `${this.height}px`,
+        position: 'relative',
       };
     },
   },
@@ -137,7 +138,5 @@ export default {
 .lineChart {
   float: left;
   margin-top: 20px;
-  width: var(--width);
-  height: var(--height);
 }
 </style>
