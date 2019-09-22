@@ -126,7 +126,9 @@ export default {
 <style lang="css" scoped>
 .weightChart {
   width: 100%;
+  height: 100%;
   overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .lineChart {
@@ -136,5 +138,6 @@ export default {
   float: left;
   margin-top: 20px;
   width: var(--width);
+  height: var(--height);
 }
 </style>
