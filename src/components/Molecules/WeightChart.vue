@@ -25,7 +25,7 @@ export default {
     ...mapGetters('weights', ['dailyList', 'loading']),
     weights() {
       return this.dailyList.map(item => ({
-        x: moment(item.createdDate),
+        x: item.createdMoment,
         y: Math.round(item.weightValue * 100) / 100,
       }));
     },
