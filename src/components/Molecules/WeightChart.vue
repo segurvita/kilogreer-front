@@ -86,7 +86,7 @@ export default {
               position: 'right',
               ticks: {
                 beginAtZero: false,
-                stepSize: 0.2,
+                stepSize: 0.5,
               },
               gridLines: {
                 display: true,
@@ -99,7 +99,7 @@ export default {
               time: {
                 unit: 'day',
                 displayFormats: {
-                  day: 'MM/DD',
+                  day: 'M/D',
                 },
                 stepSize: 1,
               },
@@ -124,13 +124,25 @@ export default {
   methods: {
     ...mapActions('weights', ['getList']),
   },
+  watch: {
+    width() {
+      this.$nextTick(() => {
+        this.$el.scrollLeft = this.width;
+      });
+    },
+    height() {
+      this.$nextTick(() => {
+        this.$el.scrollTop = this.height;
+      });
+    },
+  },
 };
 </script>
 
 <style lang="css" scoped>
 .weightChart {
-  width: 100%;
-  height: 100%;
+  width: 95vw;
+  height: 80vh;
   overflow-x: scroll;
   overflow-y: scroll;
 }
