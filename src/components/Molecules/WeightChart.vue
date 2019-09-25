@@ -16,6 +16,14 @@ import LineChart from '@/components/Atoms/LineChart';
 
 moment.locale('ja');
 
+/**
+ * 定数
+ */
+const stepRes = { w: 40, h: 200 }; // １目盛の解像度
+
+/**
+ * コンポーネント
+ */
 export default {
   name: 'WeightChart',
   components: {
@@ -51,7 +59,7 @@ export default {
           && this.dailyListVue.slice(-1)[0].createdDate) {
           const firstMoment = this.dailyListVue[0].createdMoment;
           const lastMoment = this.dailyListVue.slice(-1)[0].createdMoment;
-          const width = lastMoment.diff(firstMoment, 'days', true) * 40;
+          const width = lastMoment.diff(firstMoment, 'days', true) * stepRes.w;
           return width;
         }
       }
@@ -63,7 +71,7 @@ export default {
           && this.dailyListVue.slice(-1)[0].weightValue) {
           const firstMoment = this.dailyListVue[0].weightValue;
           const lastMoment = this.dailyListVue.slice(-1)[0].weightValue;
-          const height = Math.abs(firstMoment - lastMoment) * 200;
+          const height = Math.abs(firstMoment - lastMoment) * stepRes.h;
           return height;
         }
       }
