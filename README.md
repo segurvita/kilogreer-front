@@ -43,3 +43,14 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+``` bash
+# install firebase-tools
+npm install -g firebase-tools
+
+# login to firebase
+firebase login --interactive
+
+# deploy
+firebase deploy --only hosting
+```
