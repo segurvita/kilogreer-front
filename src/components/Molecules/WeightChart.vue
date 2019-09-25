@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapGetters('weights', ['dailyList', 'loading']),
     dailyListVue() {
-      return this.dailyList.slice(-365 * 0.5);
+      return this.dailyList.slice(-60);
     },
     weights() {
       return this.dailyListVue.map(item => ({
